@@ -6,6 +6,17 @@ include ../mixins/mutable-fields.jade
 include ../mixins/attachments.jade
 include ../mixins/citations.jade
 
+block topLevelPreview
+    span.sbh-collection-actions
+        a(href='#')
+            span.fa.fa-download
+        a(href='#')
+            span.fa.fa-share
+
+block beforeTopTitle
+    if(collectionIcon)
+        img.sbh-title-icon(src=collectionIcon)
+
 block modal
     div.modal.fade#iconModal(tabindex="-1", role="dialog")
         div.modal-dialog(role="document")
@@ -33,9 +44,11 @@ block modal
                     button.btn.btn-danger(data-dismiss="modal") Close
                     button.btn.btn-primary(type="submit", form="iconForm") Save changes
 
-block topLevelBelowPropertyTable
-    h3 Members
-    table.table.table-striped.entry-detail-table.sbh-collection-members-datatable
+block topLevelRightOfPropertyTable
+    a(data-toggle='collapse', data-target='#sbh-collection-members')
+        .sbh-section-header
+            h2 Browse this Library
+    table.table.table-striped.entry-detail-table.sbh-collection-members-datatable#sbh-collection-members.sbh-table
         thead
             th Name
             th Identifier

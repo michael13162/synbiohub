@@ -3,9 +3,16 @@ extends ../layouts/topLevel.jade
 
 block topLevelPreview
     if meta.displayList
-        div.row
-            div.col-md-12.text-center
+        div#design
+    span.sbh-preview-actions
+        a(href='#')
+            span.fa.fa-download
+        a(href='#')
+            span.fa.fa-share
+        if meta.displayList
             div#design
+                a(href='#')
+                    span.fa.fa-image
 
 block topLevelPropertyTable
     if meta.sequences.length > 0
@@ -52,30 +59,6 @@ block topLevelBelowTitle
                 a(href=protein.url) #{protein.name}
 
 block topLevelButtons
-    a.btn.btn-primary(href=sbolUrl)
-        span.fa.fa-download
-        | 
-        span Download SBOL File
-    br
-    br
-    a.btn.btn-primary(href=genBankUrl)
-        span.fa.fa-download
-        | 
-        span Download GenBank
-    br
-    br
-    a.btn.btn-primary(href=fastaUrl)
-        span.fa.fa-download
-        | 
-        span Download FASTA
-    br
-    br
-    a.btn.btn-primary.sbh-download-picture
-        span.fa.fa-picture-o
-        | 
-        span Download Image
-    br
-    br
     if !meta.remote && meta.triplestore === 'public'
         a.btn.btn-primary(href=searchUsesUrl,title='Find all uses of this part')
             span.fa.fa-search

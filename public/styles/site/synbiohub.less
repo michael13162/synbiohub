@@ -6,7 +6,6 @@ body {
     margin: 0;
     color: #2C3E50;
     height: 100%;
-    font-family: 'Roboto', sans-serif;
 }
 
 a {
@@ -513,28 +512,6 @@ input:-webkit-autofill, .sbol-login-text, .change_password input {
     color: @baseColor;
     background-color: #edc5b6;
     border-color: #edc5b6;
-}
-
-.submission-detail {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-
-    color: #2C3E50;
-
-}
-
-.submission-detail h1 {
-    font-size: 2.5em;
-    font-weight: bolder;
-}
-
-.submission-detail p{
-    font-size: 1.1em;
-    width: 90%;
-    margin: 0 auto;
-    font-weight: normal;
-    padding: .4em;
 }
 
 .submission-design {
@@ -1670,3 +1647,173 @@ ul, li {
     color: #555;
 }
 
+
+
+
+
+
+.sbh-logo {
+    width: 250px;
+}
+
+* {
+    font-family: Myriad Pro, sans-serif;
+}
+
+nav.pushy {
+    background-color: white;
+    color: black;
+}
+
+nav.pushy ul {
+    padding-left: 0;
+}
+
+nav.pushy li {
+    list-style: none;
+    cursor: pointer;
+}
+
+nav.pushy li:hover {
+    background-color: #444;
+}
+
+nav.pushy a, nav.pushy button {
+    color: black;
+    cursor: pointer;
+}
+
+.sbh-title {
+    position: absolute;
+    left: 50%;
+    top: 4px;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-weight: bolder;
+}
+
+div.sbh-section-header {
+    position: relative;
+    height: 24px;
+    line-height: 24px;
+    /* background-color: rgb(230, 116, 59);*/
+        background-color: #aaa;
+    padding-left: 6px;
+    padding-right: 6px;
+    color: white;
+    text-shadow: 1px 1px 0px #555;
+    cursor: pointer;
+}
+
+div.sbh-section-header h2 {
+    display: inline;
+    font-variant: all-small-caps;
+    font-weight: bolder;
+    text-transform: uppercase;
+    font-size: 14pt;
+    line-height: 24px;
+}
+
+div.sbh-section-header:hover {
+    background-color: rgb(250, 126, 79);
+}
+
+div.sbh-section-header h2::after {
+    position: absolute;
+    right: 3px;
+    /*content: '\25BE'; */
+    content: '-';
+    color: white;
+}
+
+a.collapsed div.sbh-section-header h2::after {
+    /* content: '\25C2'; */
+    content: '+';
+    color: white;
+}
+
+.sbh-table td {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-size: 10pt;
+}
+
+.sbh-top-description {
+    font-size: x-large;
+}
+
+.sbh-top-description-container {
+    display: flex;
+    flex-direction: column;
+  justify-content: center;
+  padding-left: 8px;
+}
+
+.sbh-desc-container {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    border-radius: 8px;
+  justify-content: center;
+}
+
+
+.sbh-title-icon {
+    height: 200px;
+    flex: 1;
+}
+
+#design {
+    display: inline-block;
+}
+
+
+.sbh-id-etc {
+    font-size: large;
+}
+
+
+.sbh-preview-actions {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+}
+
+.sbh-preview-actions a {
+    display: block;
+    font-size: xx-large;
+    color: rgb(220, 86, 59);
+}
+
+.sbh-collection-actions a {
+    display: inline-block;
+    font-size: xx-large;
+    color: rgb(220, 86, 59);
+    padding-left: 4px;
+    padding-right: 4px;   
+}
+
+.sbh-container {
+    padding-left:10%;
+    padding-right:10%;
+}
+
+.dataTables_length *, .dataTables_filter * {
+    font-size: 10pt !important;
+}
+
+.dataTables_length select {
+    height: 24px !important;
+    padding: 0 !important;
+}
+
+.dataTables_length select::before,
+.dataTables_length select::after {
+display: inline;
+    width: 8px !important;
+}
+
+.dataTables_filter input {
+    height: 24px !important;
+}
