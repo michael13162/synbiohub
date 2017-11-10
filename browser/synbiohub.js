@@ -74,6 +74,26 @@ $(document).on('blur', '#user_edit #email', function() {
     $username.val(username);
 })
 
+$(document).on('blur', '#new #name', function() {
+    $id = $('input#id');
+    $name = $(this).closest('input#name');
+
+    let name = $name.val();
+    let id = "";
+
+    for(let idx = 0; idx < name.length; idx++) {
+        let c = name.charAt(idx);
+
+        if(id.length > 0 && c.match(/[A-Za-z_0-9]/g)) {
+               id = id + name.charAt(idx);
+        } else if(id.length == 0 && c.match(/[A-Za-z_]/g)) {
+            id = id + name.charAt(idx);
+        }
+    }
+
+    $id.val(id);
+})
+
 $(document).on('click', '.sbh-datatable .delete', function () {
     const $row = $(this).closest('tr')
 
@@ -557,7 +577,7 @@ function populateForm(type, data) {
             if(key == "id") {
                 $input.attr('readonly', 'readonly')
             }
-        } 
+        }
 
         $group = $("<div />").addClass('form-group').append($label, $input)
 
@@ -627,6 +647,6 @@ $(document).on('click', '#remoteEdit', function () {
             defaultFolderId: remote["defaultFolderId"],
         }
     }[remote.type]
-    
+
     populateForm(remote.type, data)
 })
