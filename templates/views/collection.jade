@@ -24,7 +24,7 @@ block modal
                 div.modal-header
                     button.close(type="button", data-dismiss="modal", arial-label="close")
                         span(aria-hidden="true") &times;
-                    h4.modal-title Change Collection Icon
+                    h4.modal-title Change Library Icon
                 div.modal-body
                     div.row
                         div.col-sm-6
@@ -78,7 +78,7 @@ block topLevelButtons
     if locals.user && (locals.user.isCurator || locals.user.isAdmin) && meta.triplestore === 'public'
         a.btn.btn-success(data-toggle="modal", data-target="#iconModal")
             span.fa.fa-file-image-o
-            |  Change Collection Icon
+            |  Change Library Icon
         br
         br
     if meta.triplestore != 'public'

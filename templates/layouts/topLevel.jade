@@ -28,7 +28,7 @@ block breadcrumbs
 
 
 block topTitle
-    | #{meta.name?meta.name:meta.id} 
+    | #{meta.name?meta.name.replace(/[ ]*Collection/, ''):meta.id} 
     if meta.name
         if meta.id && meta.id != meta.name && meta.id.indexOf('_collection') === -1
             span (#{meta.id})
