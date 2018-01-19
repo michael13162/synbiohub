@@ -6,6 +6,17 @@ include ../mixins/mutable-fields.jade
 include ../mixins/attachments.jade
 include ../mixins/citations.jade
 
+block topLevelPreview
+    span.sbh-collection-actions
+        a(href='#')
+            span.fa.fa-download
+        a(href='#')
+            span.fa.fa-share
+
+block beforeTopTitle
+    if(collectionIcon)
+        img.sbh-title-icon(src=collectionIcon)
+
 block modal
     div.modal.fade#iconModal(tabindex="-1", role="dialog")
         div.modal-dialog(role="document")
@@ -13,7 +24,7 @@ block modal
                 div.modal-header
                     button.close(type="button", data-dismiss="modal", arial-label="close")
                         span(aria-hidden="true") &times;
-                    h4.modal-title Change Collection Icon
+                    h4.modal-title Change Library Icon
                 div.modal-body
                     div.row
                         div.col-sm-6
@@ -33,9 +44,11 @@ block modal
                     button.btn.btn-danger(data-dismiss="modal") Close
                     button.btn.btn-primary(type="submit", form="iconForm") Save changes
 
-block topLevelPreview
-    h3 Members
-    table.table.table-striped.entry-detail-table.sbh-collection-members-datatable
+block topLevelRightOfPropertyTable
+    a(data-toggle='collapse', data-target='#sbh-collection-members')
+        .sbh-section-header
+            h2 Browse this Library
+    table.table.table-striped.entry-detail-table.sbh-collection-members-datatable#sbh-collection-members.sbh-table
         thead
             th Name
             th Identifier
@@ -56,11 +69,24 @@ block topLevelPreview
 
 block topLevelButtons
     if locals.user && (locals.user.isCurator || locals.user.isAdmin) && meta.triplestore === 'public'
-        li.btn.btn-success
-            a(data-toggle="modal", data-target="#iconModal", title='Change Collection Icon',style="color:white")
-                span.fa.fa-file-image-o
+        a.btn.btn-success(data-toggle="modal", data-target="#iconModal")
+            span.fa.fa-file-image-o
+            |  Change Library Icon
+        br
+        br
+    if meta.triplestore != 'public'
+        a.btn.btn-success(onclick="popup()")
+            span.fa.fa-share
+            |  Share
+        br
+        br
+    if meta.triplestore != 'public' && locals.user && locals.user.isCurator
+        a.btn.btn-success(href=makePublic)
+            span.fa.fa-unlock
+            |  Make Public
+        br
+        br
     if meta.remote
         li.btn.btn-success
             a(href=copyFromRemote, title='Copy to SynBioHub',style="color:white")
                span.fa.fa-share-alt
-

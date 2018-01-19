@@ -3,9 +3,16 @@ extends ../layouts/topLevel.jade
 
 block topLevelPreview
     if meta.displayList
-        div.row
-            div.col-md-12.text-center
+        div#design
+    span.sbh-preview-actions
+        a(href='#')
+            span.fa.fa-download
+        a(href='#')
+            span.fa.fa-share
+        if meta.displayList
             div#design
+                a(href='#')
+                    span.fa.fa-image
 
 block topLevelPropertyTable
 
@@ -14,7 +21,7 @@ block topLevelPropertyTable
             td Implementations
             td
                 for impl in meta.builds
-                    a(href=impl) 
+                    a(href=impl)
                         != impl
 
     if meta.sequences.length > 0
@@ -22,8 +29,8 @@ block topLevelPropertyTable
             td Sequences
             td
                 for sequence in meta.sequences
-                    a(href=sequence.url) 
-                        != sequence.id   
+                    a(href=sequence.url)
+                        != sequence.id
                         if (sequence.version)
                             != ' (Version '+sequence.version+')'
                     br
@@ -41,7 +48,7 @@ block topLevelPropertyTable
                     for locatedIn in meta.protein.locatedIn
                         if locatedIn.term
                             a(href=locatedIn.uri) #{locatedIn.description}
-                        else 
+                        else
                             a(href=locatedIn.uri) #{locatedIn.uri}
                         br
                 td
@@ -51,19 +58,19 @@ block topLevelBelowTitle
         span
             | Encoded by
             for entity in meta.protein.encodedBy
-                | 
+                |
                 a(href=entity.url) #{entity.name}
     if encodedProteins.length > 0
         span
             | Encodes
             for protein in encodedProteins
-                | 
+                |
                 a(href=protein.url) #{protein.name}
 
 block topLevelButtons
     li.dropdown.btn.btn-primary
         span.fa.fa-search
-            |  
+            |
             span.caret
         ul.dropdown-menu.dropdown-toggle
             li
@@ -85,7 +92,7 @@ block topLevelButtons
     if BenchlingRemotes && ICERemotes
         li.dropdown.btn.btn-success
             span.fa.fa-send
-                |  
+                |
                 span.caret
             ul.dropdown-menu.dropdown-toggle
                 li
@@ -95,7 +102,7 @@ block topLevelButtons
     else if BenchlingRemotes
         li.dropdown.btn.btn-success
             span.fa.fa-send
-                |  
+                |
                 span.caret
             ul.dropdown-menu.dropdown-toggle
                 li
@@ -103,7 +110,7 @@ block topLevelButtons
     else if ICERemotes
         li.dropdown.btn.btn-success
             span.fa.fa-send
-                |  
+                |
                 span.caret
             ul.dropdown-menu.dropdown-toggle
                 li
