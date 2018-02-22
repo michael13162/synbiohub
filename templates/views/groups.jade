@@ -42,11 +42,12 @@ block content
                                             i.fa.fa-trash
                         tr
                             form(action="/groups/addUser", method="POST")
+                                input(type="hidden", name="group", value=group.id)
                                 td Add user
                                 td
                                     select(name='user' style='width: 100%').chosen-select
                                         for u in users
-                                            option(value=config.databasePrefix + 'user/' + u.username) !{u.name + " (" + u.username + ")"}
+                                            option(value=u.id) !{u.name + " (" + u.username + ")"}
                                 td
                                     button.btn.btn-block.btn-primary(type="submit")
                                         i.fa.fa-plus
