@@ -87,6 +87,15 @@ block content
                                    input(type='file',name='file',value=submission.file)
 
                         div.row
+                            div.col-md-12
+                                div.form-group-100
+                                    label(for="target") Submit to
+                                    select(name='target' style="width:675px;" id='target' data-placeholder='Submit to a Group').chosen-select
+                                        option(value="user", default="default") My Submissions
+                                        for group in groups
+                                            option(value=group.id) #{group.name}
+
+                        div.row
                             div.col-sm-12
                                 div.checkbox(style="margin-left:20px")
                                     label 
