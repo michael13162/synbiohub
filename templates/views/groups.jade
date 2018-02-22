@@ -1,0 +1,52 @@
+
+extends ../layouts/default.jade
+
+block content
+    .row
+        .col-md-3
+        .col-md-5
+            h1 Groups
+        .col-md-1
+            button.btn.btn-primary(href="/groups/create", style="margin-top:20px; float: right")
+                i.fa.fa-plus(style="margin-right: 5px")
+                | Create
+
+    for group in groups
+        .row
+            .col-md-3
+            .col-md-6
+                .panel.panel-primary
+                    .panel-heading
+                        h3.panel-title(style="width: 80%; display: inline-block") #{group.name}
+                        form(style="display: inline-block; float: right", action="/groups/delete", method="POST")
+                            input(type="hidden", name="group", value=group.id)
+                            button.btn.btn-link(type="submit", style="padding-top: 0px; padding-right: 0px")
+                                i.fa.fa-trash(style="color: #fff")
+                    .panel-body
+                        p #{group.description}
+                    h5(style="margin-left: 20px") Users
+                    table.table.table-striped
+                        tr
+                            th Name
+                            th Username
+                            th Delete
+                        for user in group.users
+                            tr
+                                td #{user.name}
+                                td #{user.username}
+                                td
+                                    form(action="/groups/removeUser", method="POST")
+                                        input(type="hidden", name="user", value=user.id) 
+                                        input(type="hidden", name="group", value=group.id) 
+                                        button.btn.btn-block.btn-danger(type="submit")
+                                            i.fa.fa-trash
+                        tr
+                            form(action="/groups/addUser", method="POST")
+                                td Add user
+                                td
+                                    select(name='user' style='width: 100%').chosen-select
+                                        for u in users
+                                            option(value=config.databasePrefix + 'user/' + u.username) !{u.name + " (" + u.username + ")"}
+                                td
+                                    button.btn.btn-block.btn-primary(type="submit")
+                                        i.fa.fa-plus

@@ -29,11 +29,6 @@ block body
                             a(href='/submit')
                                 span.fa.fa-cloud-upload
                                 span.blue-text  Submit
-                        li
-                            a(href='/about')
-                                span.fa.fa-info-circle
-                                span.blue-text  About
-
                         if locals.user
                             li
                                 a(href='/shared')
@@ -48,19 +43,21 @@ block body
                                     a(href='/jobs')
                                         span.fa.fa-tasks
                                         span.blue-text  Jobs
-                            if locals.user.isAdmin
-                                li
-                                    a(href='/admin')
-                                        span.fa.fa-cogs
-                                        span.blue-text  Admin
                             li
                                 a(href='/profile') 
                                     span.fa.fa-id-card
                                     span.blue-text  Profile 
                             li
+                                a(href='/groups') 
+                                    span.fa.fa-users
+                                    span.blue-text  Groups 
+                            if locals.user.isAdmin
+                                li
+                                    a(href='/admin')
+                                        span.fa.fa-cogs
+                            li
                                 a(href='/logout')
                                     span.fa.fa-sign-out
-                                    span.blue-text  Sign Out
                         else
                             li
                                 a(href='/login')

@@ -262,6 +262,15 @@ a {
     border-color: darken(@baseColor, 20%);
 }
 
+.panel-primary {
+    border-color: @baseColor;
+}
+
+.panel-primary > .panel-heading {
+    background-color: @baseColor;
+    border-color: @baseColor;
+}
+
 .sbol-content {
     width: 95%;
     height: 100%;
@@ -399,6 +408,17 @@ input:-webkit-autofill, .sbol-login-text, .change_password input {
     background-position: 5%;
     background-repeat: no-repeat;
     padding-left: 35px;
+    font-weight: normal;
+}
+
+
+.name-text {
+    padding-left: 10px;
+    font-weight: normal;
+}
+
+.description-text {
+    padding-left: 10px;
     font-weight: normal;
 }
 

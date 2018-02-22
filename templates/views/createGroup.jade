@@ -1,0 +1,36 @@
+
+extends ../layouts/default.jade
+
+block content
+    div.account-container
+        div(align='center')
+            span.fa.fa-users(style='font-size: 3.5em;')
+            p(style='font-size: 1.5em') Create Group 
+            br
+
+        div(align='center')
+
+            if registerAlert
+                div.alert.alert-danger #{registerAlert}
+
+            form#user_edit.formbody.span7(accept-charset='UTF-8',method='post')
+                 
+                input.text(name='utf8',type='hidden',value='✓')
+
+                div.control-group(style='margin-top: 4px')
+                    input.sbol-login-text.name-text(name='name',size='25',type='text',placeholder='Name')
+
+                div.clearfix
+
+                div.control-group(style='margin-top: 4px')
+                    textarea.sbol-login-text.description-text(name='description',size='25',placeholder='Description')
+
+                div.clearfix
+
+                br
+                br
+
+                div
+                    input(type='submit',class='btn btn-primary',value='Create')
+
+    br
