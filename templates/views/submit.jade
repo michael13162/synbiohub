@@ -71,14 +71,6 @@ block content
                                                        placeholder='Comma separated Pubmed IDs, we\'ll do the rest!'
                                                        value=submission.citations)
 
-                        //div.row
-                        //    div.col-md-12
-                        //        div.form-group-100
-                        //            label(for="collections") Collection
-                        //            select(name='collections' style="width:675px;" id='collections' multiple data-placeholder='Select Some Collections').chosen-select
-                        //                for collection in collections
-                        //                    option(value=collection.uri) #{collection.name}
-
                         div.row
                             div.col-md-12
                                 div.form-group-100
@@ -91,9 +83,9 @@ block content
                                 div.form-group-100
                                     label(for="target") Submit to
                                     select(name='target' style="width:675px;" id='target' data-placeholder='Submit to a Group').chosen-select
-                                        option(value="user", default="default") My Submissions
+                                        option(value=user.graphUri, default="default") My Submissions
                                         for group in groups
-                                            option(value=group.id) #{group.name}
+                                            option(value=group.graphUri) #{group.name}
 
                         div.row
                             div.col-sm-12
