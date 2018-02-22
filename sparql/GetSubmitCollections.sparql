@@ -1,0 +1,10 @@
+PREFIX dcterms: <http://purl.org/dc/terms/> 
+PREFIX sbol2: <http://sbols.org/v2#> 
+
+SELECT 
+    ?object 
+    ?name 
+WHERE { 
+    ?object a sbol2:Collection . 
+    OPTIONAL { ?object dcterms:title ?name . } 
+}
