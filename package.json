@@ -19,6 +19,7 @@
     "dom-delegator": "^13.1.0",
     "escape-string-regexp": "^1.0.3",
     "eslint": "^4.19.1",
+    "eslint-stats": "^1.0.0",
     "express": "^4.16.3",
     "express-session": "^1.13.0",
     "express-sse": "^0.4.1",

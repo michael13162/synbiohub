@@ -1,76 +1,76 @@
-var Bluebird = require("bluebird");
+let Bluebird = require('bluebird');
 
 module.exports = {
-    up: (query, DataTypes) => {
-        var isMember = false;
-        var isCurator = false;
+  up: (query, DataTypes) => {
+    let isMember = false;
+    let isCurator = false;
 
-        return query.sequelize.query("PRAGMA table_info(user)", { type: DataTypes.QueryTypes.SELECT })
-            .then(columns => {
-                columns.forEach(function (column) {
-                    console.log(column.name);
-                    if (column.name == "isMember")
-                        isMember = true;
+    return query.sequelize.query('PRAGMA table_info(user)', {type: DataTypes.QueryTypes.SELECT})
+      .then((columns) => {
+        columns.forEach(function(column) {
+          console.log(column.name);
+          if (column.name == 'isMember') {
+isMember = true;
+}
 
-                    if (column.name == "isCurator")
-                        isCurator = true;
-                }, this);
+          if (column.name == 'isCurator') {
+isCurator = true;
+}
+        }, this);
 
-                var queries = [];
+        let queries = [];
 
-                if (!isMember) {
-                    queries.push([query.addColumn("user", "isMember", {
-                        type: DataTypes.BOOLEAN,
-                        allowNull: false,
-                        defaultValue: false
-                    }),
-                    query.sequelize.query("UPDATE \"user\" SET \"isMember\" = \"isAdmin\"", { raw: true })
-                    ]);
-                }
+        if (!isMember) {
+          queries.push([query.addColumn('user', 'isMember', {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false,
+          }),
+          query.sequelize.query('UPDATE "user" SET "isMember" = "isAdmin"', {raw: true}),
+          ]);
+        }
 
-                if (!isCurator) {
-                    queries.push([query.addColumn("user", "isCurator", {
-                        type: DataTypes.BOOLEAN,
-                        allowNull: false,
-                        defaultValue: false
-                    }),
-                    query.sequelize.query("UPDATE \"user\" SET \"isCurator\" = \"isAdmin\"", { raw: true })
-                    ]);
-                }
+        if (!isCurator) {
+          queries.push([query.addColumn('user', 'isCurator', {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false,
+          }),
+          query.sequelize.query('UPDATE "user" SET "isCurator" = "isAdmin"', {raw: true}),
+          ]);
+        }
 
-                return Promise.all(queries);
-            });
+        return Promise.all(queries);
+      });
+  },
 
+  down: (query, DataTypes) => {
+    let isMember = false;
+    let isCurator = false;
 
-    },
+    return query.sequelize.query('PRAGMA table_info(user)', {type: DataTypes.QueryTypes.SELECT})
+      .then((columns) => {
+        columns.forEach(function(column) {
+          if (column.name === 'isMember') {
+isMember = true;
+}
 
-    down: (query, DataTypes) => {
-        var isMember = false;
-        var isCurator = false;
+          if (column.name === 'isCurator') {
+            isCurator = true;
+          }
+        }, this);
 
-        return query.sequelize.query("PRAGMA table_info(user)", { type: DataTypes.QueryTypes.SELECT })
-            .then(columns => {
-                columns.forEach(function (column) {
-                    if (column.name === "isMember")
-                        isMember = true;
+        let queries = [];
 
-                    if (column.name === "isCurator") {
-                        isCurator = true;
-                    }
-                }, this);
-                
-                var queries = [];
+        if (isMember) {
+          queries.push(query.removeColumn('user', 'isMember'));
+        }
 
-                if (isMember) {
-                    queries.push(query.removeColumn("user", "isMember"));
-                }
+        if (isCurator) {
+          queries.push(query.removeColumn('user', 'isCurator'));
+        }
 
-                if (isCurator) {
-                    queries.push(query.removeColumn("user", "isCurator"));
-                }
-
-                return Promise.all(queries);
-            });
-
-    }
+        return Promise.all(queries);
+      });
+  },
 };
