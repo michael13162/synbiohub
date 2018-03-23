@@ -9,8 +9,6 @@ java.init().then(() => {
     version: '1',
   });
 }).then((result) => {
-  const {success, log, errorLog, resultFilename} = result;
-
   console.log(result);
 });
 

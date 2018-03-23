@@ -2,7 +2,6 @@ package org.synbiohub;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
-import java.io.Console;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -43,7 +42,6 @@ import de.unirostock.sems.cbarchive.ArchiveEntry;
 import de.unirostock.sems.cbarchive.CombineArchive;
 import de.unirostock.sems.cbarchive.CombineArchiveException;
 import edu.utah.ece.async.ibiosim.conversion.SBML2SBOL;
-import edu.utah.ece.async.ibiosim.dataModels.biomodel.util.SBMLutilities;
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 import net.lingala.zip4j.model.FileHeader;
@@ -74,7 +72,7 @@ public class PrepareSubmissionJob extends Job
 	public ArrayList<String> collectionChoices;
 	public HashMap<String,String> webOfRegistries;
 	public String shareLinkSalt;
-	public String overwrite_merge;
+	public String overwriteMerge;
 
 	private boolean readCOMBINEArchive(String initialFilename, List<String> sbolFiles, List<String> sbmlFiles, List<String> attachments) {
 		CombineArchive combine;
@@ -138,6 +136,8 @@ public class PrepareSubmissionJob extends Job
 					} else {
 						attachments.add(filename);
 					}
+
+					reader.close();
 				}				
 			} catch (ZipException | IOException e) {
 				return false;
@@ -388,7 +388,7 @@ public class PrepareSubmissionJob extends Job
 			//doc.removeCollection(originalRootCollection);
 		}
 		
-		if (!overwrite_merge.equals("0") && !overwrite_merge.equals("1")) {
+		if (!overwriteMerge.equals("0") && !overwriteMerge.equals("1")) {
 
 			for(TopLevel topLevel : doc.getTopLevels())
 			{	
@@ -422,7 +422,7 @@ public class PrepareSubmissionJob extends Job
 							TopLevel tl = tlDoc.getTopLevel(topLevel.getIdentity());
 							if (tl != null) {
 								if (!topLevel.equals(tl)) {
-									if (overwrite_merge.equals("3")) {
+									if (overwriteMerge.equals("3")) {
 										try {
 											sbh.removeSBOL(URI.create(topLevelUri));
 										}

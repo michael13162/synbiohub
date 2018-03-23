@@ -1,4 +1,3 @@
-let Bluebird = require('bluebird');
 
 module.exports = {
   up: (query, DataTypes) => {

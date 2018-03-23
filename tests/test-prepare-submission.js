@@ -15,8 +15,6 @@ java.init().then(() => {
     keywords: [],
   });
 }).then((result) => {
-  const {success, log, errorLog, resultFilename} = result;
-
   console.log(result);
 });
 

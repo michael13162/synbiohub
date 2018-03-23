@@ -35,7 +35,7 @@ public class CloneSubmissionJob extends Job
 	public String newRootCollectionVersion;
 	public HashMap<String,String> webOfRegistries;
 	public String shareLinkSalt;
-	public String overwrite_merge;
+	public String overwriteMerge;
 
 	public void execute() throws SBOLValidationException, IOException, SBOLConversionException 
 	{
@@ -83,7 +83,7 @@ public class CloneSubmissionJob extends Job
 		doc.removeCollection(originalRootCollection);
 		Collection rootCollection = (Collection)doc.createCopy(originalRootCollection, newRootCollectionDisplayId, version);
 		
-		if (!overwrite_merge.equals("0") && !overwrite_merge.equals("1")) {
+		if (!overwriteMerge.equals("0") && !overwriteMerge.equals("1")) {
 			for(TopLevel topLevel : doc.getTopLevels())
 			{	
 				if(rootCollection!=null && topLevel.getIdentity().equals(rootCollection.getIdentity())) {
@@ -114,7 +114,7 @@ public class CloneSubmissionJob extends Job
 							TopLevel tl = tlDoc.getTopLevel(topLevel.getIdentity());
 							if (tl != null) {
 								if (!topLevel.equals(tl)) {
-									if (overwrite_merge.equals("3")) {
+									if (overwriteMerge.equals("3")) {
 										try {
 											sbh.removeSBOL(URI.create(topLevelUri));
 										}

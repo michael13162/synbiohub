@@ -16,7 +16,6 @@ import javax.xml.namespace.QName;
 import javax.xml.transform.TransformerException;
 
 import org.sbolstandard.core2.SBOLReader;
-import org.sbolstandard.core2.Annotation;
 import org.sbolstandard.core2.SBOLDocument;
 import org.sbolstandard.core2.GenericTopLevel;
 import org.sbolstandard.core2.SBOLValidationException;
