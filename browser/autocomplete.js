@@ -10,14 +10,14 @@ $('.sbh-autocomplete').typeahead({
 
         $.getJSON('/autocomplete/' + query, function(res) {
 
-            asyncResults(res.map((r) => r.name))
+            asyncResults(res.map((r) => r.name));
 
-        })
+        });
 
 
     }
 
-})
+});
 
-$('.twitter-typeahead').css('display', 'inline')
+$('.twitter-typeahead').css('display', 'inline');
 

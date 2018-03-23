@@ -1,41 +1,41 @@
 
-var h
-var mainLoop
+var h;
+var mainLoop;
 
-var clickEvent
-var submitEvent
+var clickEvent;
+var submitEvent;
 
 var state = {
 
     tasks: [],
     mode: 'list'
 
-}
+};
 
 if(document.getElementById('sbh-data-integration')) {
 
-    h = require('virtual-dom/virtual-hyperscript')
-    clickEvent = require('value-event/click')
-    submitEvent = require('value-event/submit')
+    h = require('virtual-dom/virtual-hyperscript');
+    clickEvent = require('value-event/click');
+    submitEvent = require('value-event/submit');
 
-    const MainLoop = require('main-loop')
-    const Delegator = require('dom-delegator')
+    const MainLoop = require('main-loop');
+    const Delegator = require('dom-delegator');
 
     Delegator({
-    })
+    });
 
     mainLoop = MainLoop(state, renderDataIntegrationView, {
         diff: require('virtual-dom/vtree/diff'),
         create: require('virtual-dom/vdom/create-element'),
         patch: require('virtual-dom/vdom/patch')
-    })
+    });
 
-    document.getElementById('sbh-data-integration').appendChild(mainLoop.target)
+    document.getElementById('sbh-data-integration').appendChild(mainLoop.target);
 }
 
 function update() {
 
-    mainLoop.update(state)
+    mainLoop.update(state);
 
 }
 
@@ -44,14 +44,14 @@ function renderDataIntegrationView(state) {
     return ({
         'list': renderIntegrationList,
         'add': renderAddIntegration
-    })[state.mode](state)
+    })[state.mode](state);
 
 
 }
 
 function renderIntegrationList(state) {
 
-    var elems = []
+    var elems = [];
 
     if(state.tasks.length === 0) {
         elems.push(
@@ -61,7 +61,7 @@ function renderIntegrationList(state) {
                 h('br')
             ])
 
-        )
+        );
     } else {
         elems.push(
             h('br'),
@@ -70,18 +70,18 @@ function renderIntegrationList(state) {
                 h('br')
             ])
 
-        )
+        );
 
         elems = elems.concat(
             state.tasks.map((task) => {
-                return h('div', task.name)
+                return h('div', task.name);
             })
-        )
+        );
 
-        elems.push(h('br'))
+        elems.push(h('br'));
     }
 
-    var formElems = []
+    var formElems = [];
 
     formElems.push(
         h('button.btn.btn-primary', {
@@ -89,16 +89,16 @@ function renderIntegrationList(state) {
             'ev-click': clickEvent(clickAddStep)
         }, 'Add Step'),
         '  '
-    )
+    );
 
     if(state.tasks.length === 0) { 
         formElems.push(
             h('button.btn.disabled', { type: 'submit', disabled: 'disabled' }, 'Start Job')
-        )
+        );
     } else {
         formElems.push(
             h('button.btn.btn-success', { type: 'submit' }, 'Start Job')
-        )
+        );
     }
 
     if(typeof(graphUri) !== 'undefined') {
@@ -106,20 +106,20 @@ function renderIntegrationList(state) {
             type: 'hidden',
             name: 'graphUri',
             value: graphUri
-        }))
+        }));
     }
 
     formElems.push(h('input', {
         type: 'hidden',
         name: 'inputUri',
         value: inputUri
-    }))
+    }));
 
     formElems.push(h('input', {
         type: 'hidden',
         name: 'tasks',
         value: JSON.stringify(state.tasks)
-    }))
+    }));
 
     elems.push(h('form', {
 
@@ -128,9 +128,9 @@ function renderIntegrationList(state) {
 
         //'ev-submit': submitEvent(submit)
         
-    }, formElems))
+    }, formElems));
 
-    return h('div.sbh-di', elems)
+    return h('div.sbh-di', elems);
 
 }
 
@@ -150,46 +150,46 @@ function renderAddIntegration(state) {
                     }, [
                         h('td', task.name),
                         h('td', task.description),
-                    ])
+                    ]);
                 })
             ])
         ])
-    ])
+    ]);
 
 
 }
 
 function clickAddStep() {
     
-    state.mode = 'add'
+    state.mode = 'add';
 
-    update()
+    update();
 
 }
 
 function clickBack() {
 
-    state.mode = 'list'
+    state.mode = 'list';
 
-    update()
+    update();
 
 }
 
 function clickIntegrationRow(data) {
 
-    const task = data.task
+    const task = data.task;
 
-    state.tasks.push($.extend({}, task))
+    state.tasks.push($.extend({}, task));
 
-    state.mode = 'list'
+    state.mode = 'list';
 
-    update()
+    update();
 
 }
 
 function submit(data) {
 
-    console.log('submit')
+    console.log('submit');
 
 }
 

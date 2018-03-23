@@ -1,6 +1,6 @@
 
-const visbol = require('visbol')
-const sbolv = require('visbol/font/sbolv/main')
+const visbol = require('visbol');
+const sbolv = require('visbol/font/sbolv/main');
 
 if(document.getElementById('design')
     && typeof meta !== 'undefined'
