@@ -249,7 +249,7 @@ function createWikiEditor($el, saveButtonText, updateEndpoint) {
     .append($buttons.image)
     .append($buttons.link);
 
-  var $textarea = $('<textarea class=\'form-control\'></textarea>');
+  let $textarea = $('<textarea class=\'form-control\'></textarea>');
   let $saveButton = $('<button class=\'btn btn-primary\'>').text(saveButtonText);
   let $cancelButton = $('<button class=\'btn btn-default\'>').text('Cancel');
 
@@ -334,17 +334,17 @@ $(document).on('click', '#sbh-edit-citations', function() {
 $(function() {
   // We can attach the `fileselect` event to all file inputs on the page
   $(document).on('change', ':file', function() {
-    let input = $(this),
-      numFiles = input.get(0).files ? input.get(0).files.length : 1,
-      label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+    let input = $(this);
+    let numFiles = input.get(0).files ? input.get(0).files.length : 1;
+    let label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
     input.trigger('fileselect', [numFiles, label]);
   });
 
   // We can watch for our custom `fileselect` event like this
   $(document).ready(function() {
     $(':file').on('fileselect', function(event, numFiles, label) {
-      let input = $(this).parents('.input-group').find(':text'),
-        log = numFiles > 1 ? numFiles + ' files selected' : label;
+      let input = $(this).parents('.input-group').find(':text');
+      let log = numFiles > 1 ? numFiles + ' files selected' : label;
 
       console.log($(this).closest('form').length);
       console.log($(this).closest('form').find('button').length);
@@ -393,7 +393,7 @@ $('#sbh-attachment-form').submit(function(e) {
 
 
 $('.sbh-sparql-editor').each((i, textarea) => {
-  let cm = CodeMirror.fromTextArea(textarea, {
+  CodeMirror.fromTextArea(textarea, {
     lineNumbers: true,
   });
 });
@@ -540,7 +540,7 @@ function populateForm(type, data) {
     }[fieldInfo.type].attr('name', key).addClass('form-control');
 
     if (data[key]) {
-	    if (fieldInfo.type === 'checkbox') {
+      if (fieldInfo.type === 'checkbox') {
         $input.prop('checked', data[key]);
       } else {
         $input.val(data[key]);
