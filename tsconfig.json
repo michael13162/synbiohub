@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+	"outDir": "./dist/",
+        "target": "es6",
+        "sourceMap": true,
+        "inlineSources": false,
+        "module": "commonjs",
+        "baseUrl": ".",
+        "alwaysStrict": false,
+        "strictNullChecks": false,
+        "allowJs": true,
+        "paths": {
+        }
+    },
+    "exclude": [
+        "node_modules",
+        "public",
+        "dist",
+        "browser",
+        "synbiohub.js"
+    ]
+}
