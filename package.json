@@ -41,6 +41,7 @@
     "rdf-parser-rdfxml": "^0.3.0-rc1",
     "read-chunk": "^2.1.0",
     "request": "^2.79.0",
+    "request-promise": "^4.2.2",
     "sboljs": "^2.0.4",
     "sbolmeta": "^0.3.0",
     "sendgrid": "^4.7.1",
