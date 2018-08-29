@@ -130,7 +130,7 @@ block content
                                 if rdfType.name == 'Component' || rdfType.name == 'Sequence'
                                     li 
                                         a(href=meta.url + '/' + meta.id + '.fasta') Download FASTA
-                                if rdfType.name == 'Component'
+                                if rdfType.name == 'Component' || rdfType.name == 'Module'
                                     li 
                                         a.sbh-download-picture Download Image
                                 if rdfType.name == 'Attachment'
@@ -153,11 +153,11 @@ block content
                 if canEdit && meta.triplestore != 'public' 
                     if rdfType.name == 'Collection'
                         li.btn.btn-success
-                                a(href=meta.url + '/removeCollection',title='Remove Collection',style="color:white")
+                                a(href=meta.url + '/removeCollection',title='Remove Collection',style="color:white",onclick="return confirm('Are you sure you want to delete this?')")
                                     span.fa.fa-remove
                     else 
                         li.btn.btn-success
-                                a(href=meta.url + '/remove',title='Remove',style="color:white")
+                                a(href=meta.url + '/remove',title='Remove',style="color:white", onclick="return confirm('Are you sure you want to delete this?')")
                                     span.fa.fa-remove
                 if canEdit
                     li.btn.btn-info

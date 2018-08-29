@@ -70,7 +70,9 @@ public class RDFToSBOLJob extends Job
 		}
 		//completeDocument(doc);
 		for (TopLevel topLevel : doc.getTopLevels()) {
-			doc.createRecursiveCopy(doc,topLevel);
+			if (topLevel instanceof Collection) {
+				((Collection) topLevel).getMembers();
+			}
 		}
 		
 		doc.clearRegistries();
