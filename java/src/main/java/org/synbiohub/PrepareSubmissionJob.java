@@ -293,7 +293,9 @@ public class PrepareSubmissionJob extends Job {
 
       if (useSBOLExplorer) {
         for (TopLevel topLevel : individual.getTopLevels()) {
-          explorerUrisToRemove.add(topLevel.getIdentity().toString());
+          if (topLevel.getIdentity().toString().startsWith(ownedByURI) {
+            explorerUrisToRemove.add(topLevel.getIdentity().toString());
+          }
         }
       }
 
@@ -605,7 +607,7 @@ public class PrepareSubmissionJob extends Job {
       etl.version = topLevel.getVersion();
       etl.name = topLevel.getName();
       etl.description = topLevel.getDescription();
-      etl.type = "TODO"; // TODO
+      etl.type = "TODO";
 
       if (!submit && !copy) {
         etl.graph = databasePrefix + "public";
